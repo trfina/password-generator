@@ -1,17 +1,25 @@
-// Assignment code here
+
+// get length of password to generate
 var generatePassword = function() {
   passwordLength = prompt("Enter the length (8 to 128 char) of the password you want to generate: ");
   console.log(passwordLength);
 
-  chooseCharType ()
-}
+// choose which character type options to include in password
+  chooseCharType ();
+    var charTypeConfirm = window.confirm("would you like to add another Character Type?");
+  do {
+    chooseCharType()
+    charTypeConfirm = window.confirm("add another:");
+  }
+  while (charTypeConfirm);
+};
 
 var chooseCharType = function() {
   
-  var charTypePrompt = window.prompt("Choose Caracter Type: Enter 1 for lowercase, 2 for UPPERCASE, 3 for numeric, or 4 for special characters.");
+  var charTypePrompt = window.prompt("Choose Character Type: Enter 1 for lowercase, 2 for UPPERCASE, 3 for numeric, or 4 for special characters.");
 
   charTypePrompt = parseInt(charTypePrompt);
-  
+  debugger;
   switch  (charTypePrompt) {
     case 1:
       var lowerCase = true;
@@ -35,6 +43,7 @@ var chooseCharType = function() {
       break;
   }
 }
+
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
