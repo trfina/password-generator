@@ -65,7 +65,7 @@ var createPasswordString= function() {
     console.log(" is the generated password" + password);
   }
 
-  //generateString();
+   generateString();
 
 };
 
@@ -91,7 +91,6 @@ function writePassword() {
 
   extractPasswordChars();
   createPasswordString();
-  password = charList;
   var passwordText = document.querySelector("#password");
   passwordText.value = password; 
   console.log(password); 
