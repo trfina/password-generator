@@ -15,43 +15,43 @@ var extractPasswordChars = function() {
   
   
   var lowerCaseConfirm = window.confirm("Would you like lowercase letters in your password?");
-    console.log("lowercase selected - " + lowerCaseConfirm);
+    //console.log("lowercase selected - " + lowerCaseConfirm);
   var upperCaseConfirm = window.confirm("Would you like UPPERCASE letters in your password?");
-    console.log("UPPERCASE selected - " + upperCaseConfirm);
+    //console.log("UPPERCASE selected - " + upperCaseConfirm);
   var numberConfirm = window.confirm("Would you like numbers in your password?");
-    console.log("numbers selected - " + numberConfirm);
+    //console.log("numbers selected - " + numberConfirm);
   var specialCharConfirm = window.confirm("Would you like special characters in you password?");
-    console.log("special characters selected - " + specialCharConfirm);
+    //console.log("special characters selected - " + specialCharConfirm);
 
   
   if (lowerCaseConfirm) {
     charList += lowerCaseChars;
-    console.log(charList);
+    //console.log(charList);
   }
 
   if (upperCaseConfirm) {
     charList += upperCaseChars;
-    console.log(charList);
+    //console.log(charList);
   }
 
   if (numberConfirm) {
     charList +=  numberChars;
-    console.log(charList);
+    //console.log(charList);
   } 
 
   if (specialCharConfirm) {
     charList +=  specialChars;
-    console.log(charList);
+    //console.log(charList);
   }
 };
 
 // use string of characters created in extractPassword and create a password the length the user wants
 var createPasswordString= function() {
-  console.log("Characters to use in password: " + charList);
-  console.log("Password length: " + passwordLength);
+  //console.log("Characters to use in password: " + charList);
+  //console.log("Password length: " + passwordLength);
   
   const charListLength = charList.length;
-  console.log("Character set length: " + charListLength);
+  //console.log("Character set length: " + charListLength);
 
 
   //function to generate password with required parameters
@@ -59,16 +59,16 @@ var createPasswordString= function() {
 
     for (var i = 0; i < passwordLength; i++) {
       password += charList.charAt(Math.random()*charListLength);
-      //console.log(password);
+      console.log(password);
     }
-    return password;
+    // return password;
     console.log(" is the generated password" + password);
   }
 
-   generateString();
+  generateString();
+ 
 
 };
-
 
 // Write password to the #password input
 function writePassword() {
@@ -81,7 +81,7 @@ function writePassword() {
 
     if ((passwordLength < 8) || (passwordLength > 128)){  
       window.alert("Password needs to be 8 to 128 in length.")
-      console.log(passwordLength);
+      //console.log(passwordLength);
     }
     else {
       invalidPassword = false;
@@ -91,6 +91,9 @@ function writePassword() {
 
   extractPasswordChars();
   createPasswordString();
+
+  //password = charList;
+
   var passwordText = document.querySelector("#password");
   passwordText.value = password; 
   console.log(password); 
