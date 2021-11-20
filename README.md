@@ -1,3 +1,3 @@
 # password-generator
-password-generator-screenshot.png
 
+password-generator-screenshot.png
