@@ -59,13 +59,13 @@ var createPasswordString= function() {
 
     for (var i = 0; i < passwordLength; i++) {
       password += charList.charAt(Math.random()*charListLength);
-      //console.log(password);
+      console.log(password);
     }
-    return password;
+     return password;
     console.log(" is the generated password" + password);
   }
 
-  //generateString();
+  generateString();
 
 };
 
@@ -91,7 +91,7 @@ function writePassword() {
 
   extractPasswordChars();
   createPasswordString();
-  password = charList;
+  //password = charList;
   var passwordText = document.querySelector("#password");
   passwordText.value = password; 
   console.log(password); 
