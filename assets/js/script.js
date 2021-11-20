@@ -1,48 +1,80 @@
+let lowerCaseConfirm = false; 
+let upperCaseConfirm = false;
+let numberConfirm = false;
+let specialCharConfirm =  false;
+let passwordLength = 8;
+let charList = "";
 
-// get length of password to generate
+
+// get length of password to generate and validate that is a number between 7 and 129
 var generatePassword = function() {
   passwordLength = prompt("Enter the length (8 to 128 char) of the password you want to generate: ");
   console.log(passwordLength);
+  console.log(lowerCaseConfirm, upperCaseConfirm, numberConfirm, specialCharConfirm);
 
-// choose which character type options to include in password
-  chooseCharType ();
-    var charTypeConfirm = window.confirm("would you like to add another Character Type?");
-  do {
-    chooseCharType()
-    charTypeConfirm = window.confirm("add another:");
-  }
-  while (charTypeConfirm);
+  extractPassword();
+  createString();
 };
 
-var chooseCharType = function() {
+// create string of characters to use in password
+var extractPassword = function() {
+  var lowerCaseChars = "abcdefghijklmnopqrstuvwxyz";
+  var upperCaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var numberChars = "0123456789";
+  var specialChars =  "!#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
   
-  var charTypePrompt = window.prompt("Choose Character Type: Enter 1 for lowercase, 2 for UPPERCASE, 3 for numeric, or 4 for special characters.");
+  
+  var lowerCaseConfirm = window.confirm("Would you like lowercase letters in your password?");
+    console.log("lowercase selected - " + lowerCaseConfirm);
+  var upperCaseConfirm = window.confirm("Would you like UPPERCASE letters in your password?");
+    console.log("UPPERCASE selected - " + upperCaseConfirm);
+  var numberConfirm = window.confirm("Would you like numbers in your password?");
+    console.log("numbers selected - " + numberConfirm);
+  var specialCharConfirm = window.confirm("Would you like special characters in you password?");
+    console.log("special characters selected - " + specialCharConfirm);
 
-  charTypePrompt = parseInt(charTypePrompt);
-  debugger;
-  switch  (charTypePrompt) {
-    case 1:
-      var lowerCase = true;
-      console.log(lowerCase);
-      break;
-    case 2:
-      var upperCase = true;
-      console.log(upperCase);
-      break;
-    case 3:
-      var numberType = true;
-      console.log(numberType);
-      break;
-    case 4:
-      var specialChar = true;
-      console.log(specialChar)
-      break;
-    default:
-      window.alert("you need to choose at least one character option");
-      chooseCharType();
-      break;
+  
+  console.log(lowerCaseConfirm);
+  if (lowerCaseConfirm) {
+    charList += lowerCaseChars;
+    console.log(charList);
   }
-}
+
+  if (upperCaseConfirm) {
+    charList += upperCaseChars;
+    console.log(charList);
+  }
+
+  if (numberConfirm) {
+    charList +=  numberChars;
+    console.log(charList);
+  } 
+
+  if (specialCharConfirm) {
+    charList +=  specialChars;
+    console.log(charList);
+  }
+};
+
+// use string of characters created in extractPassword and create a password the length the user wants
+var createString= function() {
+  console.log("Characters to use in password: " + charList);
+  console.log("Password length: " + passwordLength);
+  const charListLength = charList.length;
+  console.log("Character set length: " + charListLength);
+
+
+  //function to generate password with required parameters
+  function generateString() {
+
+    for (var i = 0; i < passwordLength; i++) {
+      finalPw += charList.charAt(Math.random()*charListLength);
+      console.log(finalPw);
+    }
+    return finalPw;
+    console.log(" is the generated password" + finalPw);
+  }
+};
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
@@ -51,13 +83,12 @@ var generateBtn = document.querySelector("#generate");
 // Write password to the #password input
 function writePassword() {
   // var password = generatePassword();
-  generatePassword();
   var password = "peanut";
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
 }
 
 
-// Add event listener to generate button
+// Add event listener to generate butto
 generatePassword();
 // generateBtn.addEventListener("click", writePassword);
