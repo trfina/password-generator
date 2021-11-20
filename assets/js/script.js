@@ -4,6 +4,7 @@ let numberConfirm = false;
 let specialCharConfirm =  false;
 let passwordLength = 8;
 let charList = "";
+let password = "";
 
 
 // get length of password to generate and validate that is a number between 7 and 129
@@ -12,12 +13,13 @@ var generatePassword = function() {
   console.log(passwordLength);
   console.log(lowerCaseConfirm, upperCaseConfirm, numberConfirm, specialCharConfirm);
 
-  extractPassword();
-  createString();
+  extractPasswordChars();
+  createPasswordString();
+ 
 };
 
 // create string of characters to use in password
-var extractPassword = function() {
+var extractPasswordChars = function() {
   var lowerCaseChars = "abcdefghijklmnopqrstuvwxyz";
   var upperCaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   var numberChars = "0123456789";
@@ -34,7 +36,6 @@ var extractPassword = function() {
     console.log("special characters selected - " + specialCharConfirm);
 
   
-  console.log(lowerCaseConfirm);
   if (lowerCaseConfirm) {
     charList += lowerCaseChars;
     console.log(charList);
@@ -57,9 +58,10 @@ var extractPassword = function() {
 };
 
 // use string of characters created in extractPassword and create a password the length the user wants
-var createString= function() {
+var createPasswordString= function() {
   console.log("Characters to use in password: " + charList);
   console.log("Password length: " + passwordLength);
+  
   const charListLength = charList.length;
   console.log("Character set length: " + charListLength);
 
@@ -68,27 +70,34 @@ var createString= function() {
   function generateString() {
 
     for (var i = 0; i < passwordLength; i++) {
-      finalPw += charList.charAt(Math.random()*charListLength);
-      console.log(finalPw);
+      password += charList.charAt(Math.random()*charListLength);
+      console.log(password);
     }
-    return finalPw;
-    console.log(" is the generated password" + finalPw);
+    // return finalPw;
+    console.log(" is the generated password" + password);
   }
+
+  generateString();
+  window.alert("Your password is : " + password);
 };
+
+
+// Write password to the #password input
+ var writePassword = function() {
+  generatePassword();
+  // passwordText.value = password;
+  // var passwordText = document.querySelector(password);
+  window.alert("Your password is : " + password);
+  var passwordText = document.querySelector("#password");
+  passwordText.value = password;
+  
+}
+
+
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
+// Add event listener to generate button
 
-// Write password to the #password input
-function writePassword() {
-  // var password = generatePassword();
-  var password = "peanut";
-  var passwordText = document.querySelector("#password");
-  passwordText.value = password;
-}
-
-
-// Add event listener to generate butto
-generatePassword();
-// generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", writePassword());
