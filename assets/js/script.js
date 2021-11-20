@@ -59,9 +59,9 @@ var createPasswordString= function() {
 
     for (var i = 0; i < passwordLength; i++) {
       password += charList.charAt(Math.random()*charListLength);
-      console.log(password);
+      //console.log(password);
     }
-    // return finalPw;
+    return password;
     console.log(" is the generated password" + password);
   }
 
