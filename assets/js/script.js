@@ -2,7 +2,7 @@ let lowerCaseConfirm = false;
 let upperCaseConfirm = false;
 let numberConfirm = false;
 let specialCharConfirm =  false;
-let passwordLength = 8;
+let passwordLength = "";
 let charList = "";
 let password = "";
 let selectAtLeastOne = false;
@@ -82,28 +82,42 @@ var createPasswordString= function() {
 // Write password to the #password input
 function writePassword() {
 
-  // get length of password to generate and validate that is a number between 7 and 129
-  var invalidPassword = true;
+  // get length of password to generate and validate that it is a number between 7 and 129 AND is an integer
+  var invalidPassword = true; 
 
   while (invalidPassword) {
     passwordLength = prompt("Enter a number from 8 to 128 for the length of the password you want to create.");
+    //console.log(passwordLength);
 
-    if ((passwordLength < 8) || (passwordLength > 128)){  
-      window.alert("Password needs to be 8 to 128 in length.")
-      //console.log(passwordLength);
+    if (!isNaN(passwordLength)) {
+      if (passwordLength < 8) {
+        window.alert("Enter a password at least 8 characters long.");
+        //console.log("length less than 8");
+        //console.log(invalidPassword);
+      } 
+      else if (passwordLength > 128) {
+        window.alert("Enter a password no more than 128 characters long");
+        //console.log("length greater than128");
+        //console.log(invalidPassword);
+      } 
+      else {
+        invalidPassword = false;
+        /console.log(invalidPassword);
+      }
     }
     else {
-      invalidPassword = false;
+      window.alert("Enter a valid number");
+      //console.log("not a number");
     }
   } //end while loop
-
+  //console.log("exiting while");
   extractPasswordChars();
   createPasswordString();
   //password = charList;
   var passwordText = document.querySelector("#password");
   passwordText.value = password; 
   //console.log(password); 
-}
+}; //end writePassword function
 
 var generateBtn = document.querySelector("#generate");
 
