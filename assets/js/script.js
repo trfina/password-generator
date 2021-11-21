@@ -5,8 +5,9 @@ let specialCharConfirm =  false;
 let passwordLength = 8;
 let charList = "";
 let password = "";
+let selectAtLeastOne = false;
 
-// create string of characters to use in password
+// create string of characters to use in random password based on user selection
 var extractPasswordChars = function() {
   var lowerCaseChars = "abcdefghijklmnopqrstuvwxyz";
   var upperCaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -23,7 +24,7 @@ var extractPasswordChars = function() {
   var specialCharConfirm = window.confirm("Would you like special characters in you password?");
     //console.log("special characters selected - " + specialCharConfirm);
 
-  
+  // charList starts as an  empty string; charList+= concatenates each string type that the user wants to use in the passwor generator    
   if (lowerCaseConfirm) {
     charList += lowerCaseChars;
     //console.log(charList);
@@ -43,13 +44,21 @@ var extractPasswordChars = function() {
     charList +=  specialChars;
     //console.log(charList);
   }
+
+  //check to make sure at least one string option is selected for the password generation
+if ((!lowerCaseConfirm) & (!upperCaseConfirm) & (!numberConfirm) & (!specialCharConfirm)) {
+    window.alert("Please select at least one character option");
+    extractPasswordChars();
+  } 
+
 };
 
-// use string of characters created in extractPassword and create a password the length the user wants
+// use string of characters created in extractPasswordChars  and create a password the length the user wants
 var createPasswordString= function() {
   //console.log("Characters to use in password: " + charList);
   //console.log("Password length: " + passwordLength);
   
+  // get the length of the possible characters for the password
   const charListLength = charList.length;
   //console.log("Character set length: " + charListLength);
 
@@ -57,6 +66,7 @@ var createPasswordString= function() {
   //function to generate password with required parameters
   function generateString() {
 
+    // this for loop randomly chooses a character from the selected desired string characters and  concatenates it character by character into the final password string
     for (var i = 0; i < passwordLength; i++) {
       password += charList.charAt(Math.random()*charListLength);
       console.log(password);
@@ -84,7 +94,6 @@ function writePassword() {
     }
     else {
       invalidPassword = false;
-      
     }
   } //end while loop
 
@@ -93,7 +102,7 @@ function writePassword() {
   //password = charList;
   var passwordText = document.querySelector("#password");
   passwordText.value = password; 
-  console.log(password); 
+  //console.log(password); 
 }
 
 var generateBtn = document.querySelector("#generate");
