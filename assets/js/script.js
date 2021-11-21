@@ -102,7 +102,7 @@ function writePassword() {
       } 
       else {
         invalidPassword = false;
-        /console.log(invalidPassword);
+        //console.log(invalidPassword);
       }
     }
     else {
