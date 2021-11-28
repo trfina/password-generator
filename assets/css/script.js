@@ -8,7 +8,7 @@ var generatePassword = function() {
 
 var chooseCharType = function() {
   
-  var charTypePrompt = window.prompt("Choose Caracter Type: Enter 1 for lowercase, 2 for UPPERCASE, 3 for numeric, or 4 for special characters.");
+  var charTypePrompt = window.prompt("Choose Character Type: Enter 1 for lowercase, 2 for UPPERCASE, 3 for numeric, or 4 for special characters.");
 
   charTypePrompt = parseInt(charTypePrompt);
   
